@@ -7,11 +7,10 @@ import Pagination from './Pagination';
 const Details = () => {
 
     const [datas, setDatas] = useState([]);
+    const [dataFull, setDataFull] = useState([]);
     const [loading, setLoading] = useState(true);
-    // const [posts, setPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const datasPerPage = 5;
-    // const [datasPerPage, setDatasPerPage] = useState(5);
 
     useEffect(() => {
         getData();
@@ -20,39 +19,34 @@ const Details = () => {
     const getData = async () => {
         const response = await stockApi.get('/');
         setDatas(response.data.data);
+        setDataFull(response.data.data);
         setLoading(false);
     };
-
     const indexOfLastData = currentPage * datasPerPage;
     const indexOfFirstData = indexOfLastData - datasPerPage;
     const currentDatas = datas.slice(indexOfFirstData, indexOfLastData);
-
-    // const paginate = pageNum => setCurrentPage(pageNum);
 
     const nextPage = () => setCurrentPage(currentPage + 1);
 
     const prevPage = () => setCurrentPage(currentPage - 1);
 
-    const searchCompany = (term) =>{
-        // console.log('submit', term);
+    const searchCompany = (term) => {
         let filteredData;
-        filteredData = datas.filter((d) => d.name.toLowerCase().includes(term.toLowerCase()));
+        filteredData = dataFull.filter((d) => d.name.toLowerCase().includes(term.toLowerCase()));
         setDatas(filteredData);
     }
 
     return (
         <div className="container-details">
             <div className="card">
-                {/* <> */}
                 <DetailsHeader searchCompany={searchCompany} />
                 {!loading ?
                     <>
-                        <DetailsTable data={currentDatas} />
+                        <DetailsTable data={currentDatas} viewMode={false} />
                         <Pagination datasPerPage={datasPerPage} currentPage={currentPage} totalDatas={datas.length} nextPage={nextPage} prevPage={prevPage} />
-                        {/* <Pagination datasPerPage={datasPerPage} currentPage={currentPage} totalDatas={datas.length} paginate={paginate} nextPage={nextPage} prevPage={prevPage} /> */}
                     </>
-                    : 'Loading'}
-                {/* </> */}
+                    :
+                    <h2 style={{ margin: "2rem", textAlign: "center" }}>Loading...</h2>}
             </div>
         </div>
     );

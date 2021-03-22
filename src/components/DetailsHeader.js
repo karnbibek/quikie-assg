@@ -6,7 +6,6 @@ const DetailsHeader = ({ searchCompany }) => {
     const searchCompanies = (e) => {
         e.preventDefault();
         setTerm(e.target.value)
-        console.log(e.target.value);
         searchCompany(e.target.value);
     }
 
@@ -23,15 +22,6 @@ const DetailsHeader = ({ searchCompany }) => {
                 />
                 <img className="search__icon" src="https://img.icons8.com/android/50/000000/search.png" alt='' />
             </div>
-            {/* <form onSubmit={() => searchCompany(term)} className="search">
-                <input
-                    type="text"
-                    onChange={(e) => searchCompany(e.target.value)}
-                    className="search__input"
-                    placeholder="Search by Company Name"
-                />
-                <img className="search__icon" src="https://img.icons8.com/android/50/000000/search.png" alt='' />
-            </form> */}
         </form>
     );
 }

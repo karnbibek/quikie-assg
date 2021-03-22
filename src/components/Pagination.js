@@ -1,14 +1,6 @@
 import React from 'react';
 
 const Pagination = ({ datasPerPage, currentPage, totalDatas, nextPage, prevPage }) => {
-// const Pagination = ({ datasPerPage, currentPage, totalDatas, paginate, nextPage, prevPage }) => {
-    // const pageNumbers = [];
-
-    // for (let i = 1; i <= Math.ceil(totalDatas / datasPerPage); i++) {
-    //     pageNumbers.push(i);
-    // }
-
-    // const next = currentPage + 1;
 
     return (
         <nav className="page">

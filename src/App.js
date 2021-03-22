@@ -8,12 +8,8 @@ const App = ({ children }) => {
       <Navbar />
 
       <div className="container">
-        {/* <div className="container-cards"> */}
           <Cards />
-        {/* </div> */}
-        {/* <div className="container-table"> */}
           {children}
-        {/* </div> */}
       </div>
     </div>
   );
